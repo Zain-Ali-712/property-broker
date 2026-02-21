@@ -1,7 +1,11 @@
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+
 export default function Home() {
   return (
     <main>
-      <h1>Property Broker</h1>
+      <Navbar />
+      <HeroSection />
     </main>
   );
 }
