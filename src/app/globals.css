@@ -33,6 +33,7 @@
     opacity: 0;
     transform: translateY(28px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -43,6 +44,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -63,30 +65,47 @@
 }
 
 /* ── Delay helpers ─────────────────────────────────────────── */
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }
-.delay-500 { animation-delay: 0.5s; }
-.delay-600 { animation-delay: 0.6s; }
-.delay-700 { animation-delay: 0.7s; }
-.delay-800 { animation-delay: 0.8s; }
-.delay-900 { animation-delay: 0.9s; }
-
-/* ============================================================
-   CSS RESET / BASE
-   ============================================================ */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+.delay-100 {
+  animation-delay: 0.1s;
 }
 
-* {
-  margin: 0;
-  padding: 0;
+.delay-200 {
+  animation-delay: 0.2s;
 }
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-600 {
+  animation-delay: 0.6s;
+}
+
+.delay-700 {
+  animation-delay: 0.7s;
+}
+
+.delay-800 {
+  animation-delay: 0.8s;
+}
+
+.delay-900 {
+  animation-delay: 0.9s;
+}
+
+/* NOTE: box-sizing, margin, and padding resets are handled automatically
+   by Tailwind's built-in Preflight (included via @import "tailwindcss").
+   DO NOT add a custom * { margin: 0; padding: 0 } rule here — it will
+   override Preflight and break Tailwind's px-*, py-*, m-*, p-*, gap-*
+   utility classes on all form elements (select, button, input, a). */
 
 html {
   font-size: 16px;

@@ -32,21 +32,18 @@ export default function Navbar() {
                     : "none",
             }}
         >
-            <nav className="max-w-[1400px] mx-auto px-8 py-5 flex items-center justify-between">
-                {/* Logo */}
+            <nav
+                className="w-full flex items-center justify-center md:justify-between"
+                style={{ padding: "clamp(1.5rem, 3vw, 2.5rem) clamp(2rem, 6vw, 6rem)" }}
+            >
+                {/* Logo (Hidden on mobile) */}
                 <Link
                     href="/"
-                    className="flex flex-col leading-none group"
+                    className="hidden md:flex flex-col leading-none group"
                     style={{ fontFamily: "var(--font-cinzel)" }}
                 >
                     <span
-                        className="text-[10px] tracking-[0.35em] uppercase transition-colors duration-300"
-                        style={{ color: "var(--color-gold-muted)" }}
-                    >
-                        · Est. 2010 ·
-                    </span>
-                    <span
-                        className="text-[18px] tracking-[0.2em] uppercase font-medium transition-colors duration-300"
+                        className="text-[20px] lg:text-[26px] tracking-[0.2em] uppercase font-medium transition-colors duration-300"
                         style={{ color: "var(--color-parchment)" }}
                     >
                         Property Brokers
@@ -54,12 +51,12 @@ export default function Navbar() {
                 </Link>
 
                 {/* Nav Links */}
-                <ul className="flex items-center gap-8">
+                <ul className="flex items-center gap-5 md:gap-10 overflow-x-auto w-full md:w-auto justify-center md:justify-end">
                     {navLinks.map((link) => (
-                        <li key={link.label}>
+                        <li key={link.label} className="shrink-0">
                             <Link
                                 href={link.href}
-                                className="relative text-[11px] tracking-[0.25em] uppercase transition-all duration-300 group"
+                                className="relative text-[11px] md:text-[13px] lg:text-[15px] tracking-[0.2em] md:tracking-[0.25em] uppercase transition-all duration-300 group"
                                 style={{
                                     fontFamily: "var(--font-cinzel)",
                                     color: "rgba(245, 240, 232, 0.75)",
@@ -78,11 +75,11 @@ export default function Navbar() {
                         </li>
                     ))}
 
-                    {/* Search Property CTA */}
-                    <li>
+                    {/* Search Property CTA (Hidden on mobile and tablet) */}
+                    <li className="hidden lg:block">
                         <Link
                             href="/search"
-                            className="text-[11px] tracking-[0.2em] uppercase px-5 py-2.5 border transition-all duration-300 rounded-sm"
+                            className="inline-block text-[12px] lg:text-[14px] tracking-[0.2em] uppercase px-4 py-1.5 border transition-all duration-300 rounded-sm"
                             style={{
                                 fontFamily: "var(--font-cinzel)",
                                 color: "var(--color-parchment)",

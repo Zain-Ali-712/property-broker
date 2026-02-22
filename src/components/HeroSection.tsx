@@ -47,20 +47,10 @@ const socialLinks = [
 
 export default function HeroSection() {
     return (
-        /*
-         * The section must have an EXPLICIT height for next/image fill to work.
-         * Using 100dvh (dynamic viewport height) prevents mobile browser-chrome
-         * overflow. overflow-hidden clips the absolutely-placed image.
-         */
         <section
-            className="relative w-full overflow-hidden"
-            style={{ height: "100dvh", minHeight: "600px" }}
+            className="relative w-full h-[100dvh] min-h-[600px] flex flex-col"
         >
-            {/* ── Background Image ──────────────────────────────── */}
-            {/*
-       * The parent div is absolute inset-0, giving next/image its containing
-       * block so fill + object-cover work correctly at any viewport size.
-       */}
+
             <div className="absolute inset-0 w-full h-full">
                 <Image
                     src="/hero2.jpg"
@@ -69,12 +59,11 @@ export default function HeroSection() {
                     priority
                     quality={90}
                     sizes="100vw"
-                    style={{ objectFit: "cover", objectPosition: "center 45%" }}
+                    style={{ objectFit: "cover", objectPosition: "center 55%" }}
                 />
             </div>
 
-            {/* ── Gradient Overlays ─────────────────────────────── */}
-            {/* Left-heavy dark wrap — keeps text legible */}
+
             <div
                 className="absolute inset-0"
                 style={{
@@ -105,7 +94,7 @@ export default function HeroSection() {
        * justify-between push the bottom row to the footer of the hero.
        */}
             <div
-                className="relative z-10 flex flex-col h-full"
+                className="relative z-10 flex flex-col flex-1"
                 style={{ padding: "0 clamp(2rem, 6vw, 6rem)" }}
             >
                 {/* Spacer: pushes content below the fixed navbar (~80px tall) */}
@@ -160,8 +149,8 @@ export default function HeroSection() {
                         className="animate-fade-in-up delay-300"
                         style={{
                             fontFamily: "var(--font-cinzel)",
-                            /* clamp(min, preferred, max) — preferred is viewport-relative */
-                            fontSize: "clamp(2rem, 3.6vw, 4rem)",
+                            /* clamp(min, preferred, max) — prefer larger text */
+                            fontSize: "clamp(2.5rem, 4.5vw, 5rem)",
                             lineHeight: 1.08,
                             letterSpacing: "0.03em",
                             fontWeight: 400,
@@ -258,9 +247,8 @@ export default function HeroSection() {
                     </div>
                 </div>
 
-                {/* ── Bottom Row ────────────────────────────────── */}
                 <div
-                    className="flex items-end justify-between animate-fade-in delay-900"
+                    className="flex items-end justify-between animate-fade-in delay-900 mt-auto"
                     style={{ paddingBottom: "clamp(1.5rem, 3vh, 2.5rem)" }}
                 >
                     {/* Scroll indicator */}
@@ -288,7 +276,7 @@ export default function HeroSection() {
 
                     {/* Property Preview Accent Card */}
                     <div
-                        className="flex items-center gap-4"
+                        className="flex flex-col md:flex-row items-start md:items-center gap-4"
                         style={{
                             background: "rgba(10,10,10,0.58)",
                             backdropFilter: "blur(18px)",
