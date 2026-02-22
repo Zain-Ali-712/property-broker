@@ -5,7 +5,6 @@ import Image from "next/image";
 
 const property = {
     title: "Modern Coastal Estate",
-    tagline: "Your primary home might begin to feel left out",
     location: "11 Kodex Place, Paraparaumu",
     price: "$2,450,000",
     description:
@@ -18,6 +17,9 @@ const property = {
     ],
     images: ["/hero2.jpg", "/hero2.jpg", "/hero2.jpg"],
 };
+
+const generalDescription =
+    "Discover our curated collection of exceptional properties in New Zealand's most sought-after locations. Each home is selected for its architectural merit, location, and lifestyle potential.";
 
 export default function FeaturedProperties() {
     const [slots, setSlots] = useState([0, 1, 2]);
@@ -38,225 +40,110 @@ export default function FeaturedProperties() {
 
     return (
         <section
-            style={{
-                background: "var(--color-obsidian)",
-                padding: "5rem clamp(2rem, 6vw, 6rem)",
-                borderTop: "1px solid rgba(255,255,255,0.06)",
-            }}
+            className="w-full bg-obsidian border-t border-white/[0.06]"
+            style={{ padding: "5rem clamp(1.25rem, 6vw, 6rem)" }}
         >
-            <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
-                {/* Top row */}
-                <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "1fr 1fr",
-                        gap: "3rem",
-                        alignItems: "flex-end",
-                        marginBottom: "2.75rem",
-                    }}
-                    className="max-md:grid-cols-1 max-md:gap-4"
-                >
+            <div className="max-w-[1600px] mx-auto">
+
+                {/* Top row: heading left | description right */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-end mb-10 md:mb-14">
                     <div>
-                        <div
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "0.75rem",
-                                marginBottom: "1rem",
-                            }}
-                        >
+                        <div className="flex items-center gap-3 mb-4">
+                            <span className="block h-px w-5 bg-gold-muted shrink-0" />
                             <span
-                                style={{
-                                    height: "1px",
-                                    width: "1.25rem",
-                                    background: "var(--color-gold-muted)",
-                                    display: "block",
-                                    flexShrink: 0,
-                                }}
-                            />
-                            <span
-                                style={{
-                                    fontFamily: "var(--font-cinzel)",
-                                    fontSize: "9px",
-                                    textTransform: "uppercase",
-                                    letterSpacing: "0.4em",
-                                    color: "var(--color-gold-muted)",
-                                }}
+                                className="font-cinzel text-gold-muted uppercase tracking-[0.4em]"
+                                style={{ fontSize: "9px" }}
                             >
                                 Featured Property
                             </span>
                         </div>
                         <h2
-                            style={{
-                                fontFamily: "var(--font-cinzel)",
-                                fontSize: "clamp(1.7rem, 2.8vw, 3rem)",
-                                color: "var(--color-parchment)",
-                                fontWeight: 300,
-                                lineHeight: 1.15,
-                                letterSpacing: "-0.02em",
-                            }}
+                            className="font-cinzel text-parchment font-light leading-[1.15] tracking-tight"
+                            style={{ fontSize: "clamp(1.6rem, 2.8vw, 3rem)" }}
                         >
-                            {property.tagline}
+                            Your Primary home might
+                            <br />
+                            <span style={{ color: "var(--color-gold-muted)" }}>begin to feel left out</span>
                         </h2>
                     </div>
                     <p
-                        style={{
-                            fontSize: "0.875rem",
-                            lineHeight: 1.85,
-                            color: "rgba(245,240,232,0.38)",
-                            maxWidth: "480px",
-                        }}
+                        className="text-sm leading-loose"
+                        style={{ color: "rgba(245,240,232,0.38)" }}
                     >
-                        {property.description}
+                        {generalDescription}
                     </p>
                 </div>
 
-                {/* Main 3-column layout (responsive) */}
-                <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "1.5fr 1.1fr 0.85fr",
-                        gap: "1rem",
-                        alignItems: "stretch",
-                    }}
-                    className="max-lg:grid-cols-1 max-lg:gap-6"
-                >
-                    {/* Column 1: Large main image */}
-                    <div
-                        style={{
-                            position: "relative",
-                            overflow: "hidden",
-                            minHeight: "420px",
-                        }}
-                        className="max-lg:min-h-[300px]"
-                    >
+                {/* Main layout: responsive grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_1.1fr_0.85fr] gap-4 items-stretch">
+
+                    {/* COL 1: Large main image */}
+                    <div className="relative overflow-hidden min-h-[260px] md:min-h-[360px] lg:min-h-[460px] md:col-span-2 lg:col-span-1">
                         <Image
                             src={property.images[slots[0]]}
                             alt={property.title}
                             fill
-                            style={{ objectFit: "cover", transition: "transform 0.7s ease" }}
+                            className="object-cover transition-transform duration-700"
                             priority
-                            sizes="(max-width: 1024px) 100vw, 45vw"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 45vw"
                         />
                         <div
-                            style={{
-                                position: "absolute",
-                                inset: 0,
-                                background:
-                                    "linear-gradient(to top, rgba(13,13,13,0.5) 0%, transparent 45%)",
-                                pointerEvents: "none",
-                            }}
+                            className="absolute inset-0 pointer-events-none"
+                            style={{ background: "linear-gradient(to top, rgba(13,13,13,0.5) 0%, transparent 45%)" }}
                         />
                         <div
-                            style={{
-                                position: "absolute",
-                                bottom: "1.25rem",
-                                left: "1.25rem",
-                                borderTop: "2px solid var(--color-gold-muted)",
-                                paddingTop: "0.4rem",
-                            }}
+                            className="absolute bottom-5 left-5 pt-1.5"
+                            style={{ borderTop: "2px solid var(--color-gold-muted)" }}
                         >
                             <span
-                                style={{
-                                    fontFamily: "var(--font-cinzel)",
-                                    fontSize: "9px",
-                                    textTransform: "uppercase",
-                                    letterSpacing: "0.28em",
-                                    color: "rgba(245,240,232,0.7)",
-                                    display: "block",
-                                    marginBottom: "0.2rem",
-                                }}
+                                className="font-cinzel uppercase text-parchment/70 block"
+                                style={{ fontSize: "9px", letterSpacing: "0.28em" }}
                             >
                                 {property.location}
                             </span>
                         </div>
                     </div>
 
-                    {/* Column 2: Secondary image + property details */}
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            overflow: "hidden",
-                            border: "1px solid rgba(255,255,255,0.05)",
-                        }}
-                    >
-                        {/* Secondary image */}
-                        <div
-                            style={{
-                                position: "relative",
-                                flex: "0 0 52%",
-                                overflow: "hidden",
-                                minHeight: "180px",
-                            }}
-                        >
+                    {/* COL 2: Secondary image + detail card */}
+                    <div className="flex flex-col h-full">
+                        {/* Image with fixed aspect ratio */}
+                        <div className="relative w-full aspect-[16/9] overflow-hidden">
                             <Image
                                 src={property.images[slots[1]]}
                                 alt="Property view"
                                 fill
-                                style={{ objectFit: "cover", transition: "all 0.55s ease" }}
-                                sizes="(max-width: 1024px) 100vw, 28vw"
+                                className="object-cover transition-all duration-500"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 28vw"
                             />
                         </div>
 
-                        {/* Details panel (separate from image) */}
-                        <div
-                            style={{
-                                flex: 1,
-                                padding: "1.75rem 1.5rem",
-                                background: "rgba(245,240,232,0.04)",
-                                backdropFilter: "blur(2px)",
-                                borderTop: "1px solid rgba(255,255,255,0.06)",
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "1rem",
-                            }}
-                        >
-                            {/* Property title (instead of duplicate price) */}
-                            <h3
-                                style={{
-                                    fontFamily: "var(--font-cinzel)",
-                                    fontSize: "1.5rem",
-                                    color: "var(--color-parchment)",
-                                    fontWeight: 300,
-                                    letterSpacing: "-0.01em",
-                                    lineHeight: 1.2,
-                                }}
+                        {/* Detail panel — no fixed height, content determines size */}
+                        <div className="flex flex-col items-center justify-center flex-1 gap-4 p-4 md:p-6 text-center">
+                            <p
+                                className="font-cinzel text-parchment font-light"
+                                style={{ fontSize: "clamp(1rem, 3vw, 1.15rem)", lineHeight: 1.3 }}
                             >
                                 {property.title}
-                            </h3>
+                            </p>
 
-                            {/* Features row - larger */}
-                            <div
-                                style={{
-                                    display: "flex",
-                                    gap: "2rem",
-                                    borderTop: "1px solid rgba(255,255,255,0.1)",
-                                    borderBottom: "1px solid rgba(255,255,255,0.1)",
-                                    padding: "1rem 0",
-                                }}
-                            >
+                            <div className="w-full h-px bg-white/[0.06]" />
+
+                            {/* Features row — wrap on small screens */}
+                            <div className="flex flex-wrap gap-4 justify-center">
                                 {property.features.map((f) => (
-                                    <div key={f.label}>
+                                    <div key={f.label} className="flex flex-col items-center">
                                         <div
-                                            style={{
-                                                fontFamily: "var(--font-cinzel)",
-                                                fontSize: "1.4rem",
-                                                color: "var(--color-gold-muted)",
-                                                fontWeight: 400,
-                                                lineHeight: 1,
-                                            }}
+                                            className="font-cinzel text-gold-muted"
+                                            style={{ fontSize: "clamp(1.2rem, 4vw, 1.5rem)", lineHeight: 0.8, fontWeight: 400 }}
                                         >
                                             {f.value}
                                         </div>
                                         <div
+                                            className="font-cinzel uppercase mt-1"
                                             style={{
-                                                fontFamily: "var(--font-cinzel)",
-                                                fontSize: "0.65rem",
-                                                textTransform: "uppercase",
-                                                letterSpacing: "0.15em",
+                                                fontSize: "8px",
+                                                letterSpacing: "0.22em",
                                                 color: "rgba(245,240,232,0.4)",
-                                                marginTop: "4px",
                                             }}
                                         >
                                             {f.label}
@@ -265,38 +152,24 @@ export default function FeaturedProperties() {
                                 ))}
                             </div>
 
-                            {/* Price + Button */}
-                            <div
-                                style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "space-between",
-                                    gap: "1rem",
-                                }}
-                            >
+                            <div className="w-full h-px bg-white/[0.06]" />
+
+                            {/* Price and Button Row */}
+                            <div className="w-full flex flex-wrap items-center justify-between gap-3">
                                 <span
-                                    style={{
-                                        fontFamily: "var(--font-cinzel)",
-                                        fontSize: "1.8rem",
-                                        color: "var(--color-parchment)",
-                                        fontWeight: 300,
-                                        letterSpacing: "-0.01em",
-                                    }}
+                                    className="font-cinzel text-parchment font-light"
+                                    style={{ fontSize: "clamp(1.2rem, 4vw, 1.8rem)", letterSpacing: "-0.01em" }}
                                 >
                                     {property.price}
                                 </span>
+
                                 <button
+                                    className="font-cinzel uppercase text-parchment cursor-pointer transition-all duration-250 px-5 py-2.5 md:px-8 md:py-3"
                                     style={{
-                                        fontFamily: "var(--font-cinzel)",
-                                        fontSize: "0.75rem",
-                                        textTransform: "uppercase",
-                                        letterSpacing: "0.25em",
-                                        color: "var(--color-parchment)",
+                                        fontSize: "8px",
+                                        letterSpacing: "0.35em",
                                         background: "transparent",
                                         border: "1px solid rgba(201,169,110,0.4)",
-                                        padding: "0.75rem 1.5rem",
-                                        cursor: "pointer",
-                                        transition: "all 0.25s",
                                         whiteSpace: "nowrap",
                                     }}
                                     onMouseEnter={(e) => {
@@ -316,56 +189,29 @@ export default function FeaturedProperties() {
                         </div>
                     </div>
 
-                    {/* Column 3: Third image + nav + text */}
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "1.25rem",
-                        }}
-                    >
-                        <div
-                            style={{
-                                position: "relative",
-                                flex: 1,
-                                overflow: "hidden",
-                                minHeight: "300px",
-                            }}
-                        >
+                    {/* COL 3: Third image + nav arrows + text */}
+                    <div className="flex flex-col gap-5">
+                        {/* Image with nav arrows */}
+                        <div className="relative overflow-hidden flex-1 min-h-[220px] md:min-h-[280px]">
                             <Image
                                 src={property.images[slots[2]]}
                                 alt="Property exterior"
                                 fill
-                                style={{ objectFit: "cover", transition: "all 0.55s ease" }}
-                                sizes="(max-width: 1024px) 100vw, 20vw"
+                                className="object-cover transition-all duration-500"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 20vw"
                             />
-                            <div
-                                style={{
-                                    position: "absolute",
-                                    top: "1rem",
-                                    right: "1rem",
-                                    display: "flex",
-                                    gap: "0.4rem",
-                                    zIndex: 10,
-                                }}
-                            >
-                                {["←", "→"].map((arrow, i) => (
+                            <div className="absolute top-3 right-3 flex gap-1.5 z-10">
+                                {(["←", "→"] as const).map((arrow, i) => (
                                     <button
                                         key={arrow}
                                         onClick={i === 0 ? handlePrev : handleNext}
+                                        className="flex items-center justify-center w-8 h-8 transition-all duration-200 cursor-pointer"
                                         style={{
-                                            width: "34px",
-                                            height: "34px",
+                                            fontSize: "13px",
                                             background: "rgba(13,13,13,0.65)",
                                             backdropFilter: "blur(4px)",
                                             border: "1px solid rgba(201,169,110,0.3)",
-                                            cursor: "pointer",
-                                            fontSize: "13px",
                                             color: "var(--color-parchment)",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                            transition: "all 0.2s",
                                         }}
                                         onMouseEnter={(e) => {
                                             e.currentTarget.style.background = "var(--color-gold-muted)";
@@ -382,27 +228,16 @@ export default function FeaturedProperties() {
                                 ))}
                             </div>
                         </div>
+
+                        {/* Extra description below third image */}
                         <p
-                            style={{
-                                fontSize: "0.78rem",
-                                lineHeight: 1.85,
-                                color: "rgba(245,240,232,0.32)",
-                            }}
+                            className="text-xs leading-loose hidden md:block"
+                            style={{ color: "rgba(245,240,232,0.32)" }}
                         >
                             {property.description}
                         </p>
                     </div>
                 </div>
-
-                {/* Divider */}
-                <div
-                    style={{
-                        width: "100%",
-                        height: "1px",
-                        background: "rgba(255,255,255,0.05)",
-                        marginTop: "4rem",
-                    }}
-                />
             </div>
         </section>
     );

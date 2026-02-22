@@ -1,17 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 const navLinks = [
     { label: "Home", href: "/" },
-    { label: "Selling", href: "/selling" },
     { label: "Buying", href: "/buying" },
+    { label: "Selling", href: "/selling" },
     { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 40);
@@ -52,33 +54,37 @@ export default function Navbar() {
 
                 {/* Nav Links */}
                 <ul className="flex items-center gap-5 md:gap-10 overflow-x-auto w-full md:w-auto justify-center md:justify-end">
-                    {navLinks.map((link) => (
-                        <li key={link.label} className="shrink-0">
-                            <Link
-                                href={link.href}
-                                className="relative text-[11px] md:text-[13px] lg:text-[15px] tracking-[0.2em] md:tracking-[0.25em] uppercase transition-all duration-300 group"
-                                style={{
-                                    fontFamily: "var(--font-cinzel)",
-                                    color: "rgba(245, 240, 232, 0.75)",
-                                    fontWeight: 400,
-                                }}
-                            >
-                                <span className="group-hover:opacity-100 transition-opacity duration-300">
-                                    {link.label}
-                                </span>
-                                {/* underline slide-in */}
-                                <span
-                                    className="absolute -bottom-1 left-0 w-0 h-px group-hover:w-full transition-all duration-300"
-                                    style={{ background: "var(--color-gold-muted)" }}
-                                />
-                            </Link>
-                        </li>
-                    ))}
+                    {navLinks.map((link) => {
+                        const isActive = pathname === link.href;
+
+                        return (
+                            <li key={link.label} className="shrink-0">
+                                <Link
+                                    href={link.href}
+                                    className="relative text-[11px] md:text-[13px] lg:text-[15px] tracking-[0.2em] md:tracking-[0.25em] uppercase transition-all duration-300 group"
+                                    style={{
+                                        fontFamily: "var(--font-cinzel)",
+                                        color: isActive ? "var(--color-gold-muted)" : "rgba(245, 240, 232, 0.75)",
+                                        fontWeight: 400,
+                                    }}
+                                >
+                                    <span className="group-hover:opacity-100 transition-opacity duration-300">
+                                        {link.label}
+                                    </span>
+                                    {/* underline slide-in - persistent if active */}
+                                    <span
+                                        className={`absolute -bottom-1 left-0 h-px transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}
+                                        style={{ background: "var(--color-gold-muted)" }}
+                                    />
+                                </Link>
+                            </li>
+                        );
+                    })}
 
                     {/* Search Property CTA (Hidden on mobile and tablet) */}
                     <li className="hidden lg:block">
                         <Link
-                            href="/search"
+                            href="/#property-search"
                             className="inline-block text-[12px] lg:text-[14px] tracking-[0.2em] uppercase px-4 py-1.5 border transition-all duration-300 rounded-sm"
                             style={{
                                 fontFamily: "var(--font-cinzel)",

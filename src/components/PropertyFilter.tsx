@@ -45,6 +45,7 @@ export default function PropertyFilter() {
 
     return (
         <section
+            id="property-search"
             className="w-full relative z-20"
             style={{
                 background: "var(--color-obsidian)",
@@ -75,30 +76,29 @@ export default function PropertyFilter() {
                         <div
                             key={stat.label}
                             style={{
-                                paddingLeft: i === 0 ? "0" : "clamp(1.5rem, 3vw, 3rem)",
-                                paddingRight: i < 3 ? "clamp(1.5rem, 3vw, 3rem)" : "0",
+                                paddingLeft: i === 0 ? "0" : "clamp(0.75rem, 3vw, 3rem)",
+                                paddingRight: i < 3 ? "clamp(0.75rem, 3vw, 3rem)" : "0",
                                 borderRight: i < 3 ? "1px solid rgba(255,255,255,0.06)" : "none",
                             }}
                         >
                             <p
                                 style={{
                                     fontFamily: "var(--font-cinzel)",
-                                    fontSize: "clamp(2rem, 2.8vw, 3.2rem)",
+                                    fontSize: "clamp(1.15rem, 2.8vw, 3.2rem)",
                                     color: "var(--color-gold-muted)",
                                     fontWeight: 300,
                                     letterSpacing: "-0.02em",
                                     lineHeight: 1,
-                                    marginBottom: "0.5rem",
+                                    marginBottom: "0.4rem",
                                 }}
                             >
                                 {stat.value}
                             </p>
                             <p
+                                className="font-cinzel uppercase"
                                 style={{
-                                    fontFamily: "var(--font-cinzel)",
-                                    fontSize: "10px",
-                                    textTransform: "uppercase" as const,
-                                    letterSpacing: "0.24em",
+                                    fontSize: "clamp(7px, 1.2vw, 10px)",
+                                    letterSpacing: "0.2em",
                                     color: "rgba(245,240,232,0.3)",
                                 }}
                             >
@@ -450,25 +450,11 @@ export default function PropertyFilter() {
                     MAP SUBSECTION
                 ═══════════════════════════════════════════════════ */}
                 <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "2fr 3fr",
-                        gap: "2rem",
-                        borderTop: "1px solid rgba(255,255,255,0.06)",
-                        paddingTop: "2rem",
-                    }}
-                    className="max-sm:flex max-sm:flex-col"
+                    className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-6 md:gap-8 border-t border-white/[0.06] pt-8"
                 >
                     {/* Left — heading + text + image */}
                     <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "space-between",
-                            gap: "1.5rem",
-                            paddingRight: "clamp(1rem, 3vw, 3rem)",
-                            borderRight: "1px solid rgba(255,255,255,0.06)",
-                        }}
+                        className="flex flex-col justify-between gap-6 md:border-r md:border-white/[0.06] md:pr-8"
                     >
                         <div>
                             <span
@@ -552,8 +538,10 @@ export default function PropertyFilter() {
                         </button>
                     </div>
 
-                    {/* Right — colored Google Map — on mobile this goes below via order */}
-                    <div className="max-sm:order-2" style={{ position: "relative", minHeight: "200px" }}>
+                    {/* Right — map — stacks below on mobile */}
+                    <div
+                        className="relative min-h-[260px] md:min-h-[340px]"
+                    >
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1521.9056157011406!2d174.9961816!3d-40.9168472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d40ba44a6c0c2bb%3A0xe104cf28670da5!2s11%20Kodex%20Place%2C%20Paraparaumu%205032%2C%20New%20Zealand!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
                             width="100%"
