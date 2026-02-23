@@ -48,7 +48,7 @@ export default function Navbar() {
                         className="text-[20px] lg:text-[26px] tracking-[0.2em] uppercase font-medium transition-colors duration-300"
                         style={{ color: "var(--color-parchment)" }}
                     >
-                        Property Brokers
+                        Brittany Fagaloa - Time
                     </span>
                 </Link>
 
