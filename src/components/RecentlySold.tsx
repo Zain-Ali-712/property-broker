@@ -6,35 +6,35 @@ import { useRef } from "react";
 const soldProperties = [
     {
         id: "sold1",
-        address: "42 Rata Street, Levin",
-        price: "$820,000",
-        date: "October 2023",
-        image: "/hero1.jpg",
-        days: "12 Days on Market"
+        title: "A Smart Start!",
+        location: "Paraparaumu",
+        description: "Enjoy comfort and everyday convenience in this well-presented townhouse, thoughtfully updated for easy living. The refreshed kitchen flows seamlessly into a ligh ...",
+        details: "2 Beds • 1 Bath • 1 Garage",
+        image: "/Sold1.jpg"
     },
     {
         id: "sold2",
-        address: "19 The Esplanade, Kapiti",
-        price: "$1,650,000",
-        date: "September 2023",
-        image: "/hero2.jpg",
-        days: "8 Days on Market"
+        title: "Easy Living at the Beach",
+        location: "Paraparaumu Beach",
+        description: "Apartment 21 at The Pier is a smart choice for those seeking a secure lock-and-leave lifestyle or considering a quality downsizing option. With an approximate floor ...",
+        details: "2 Beds • 2 Baths",
+        image: "/Sold2.jpg"
     },
     {
         id: "sold3",
-        address: "7A Main Road, Ōtaki",
-        price: "$690,000",
-        date: "August 2023",
-        image: "/hero1.jpg",
-        days: "15 Days on Market"
+        title: "Solid start in central Paraparaumu - must be sold!",
+        location: "Paraparaumu",
+        description: "Looking for your first home, a smart investment, or the perfect downsize? You'll love what this central Paraparaumu brick beauty has to offer! This home combines ...",
+        details: "3 Beds • 2 Baths • 1 Garage",
+        image: "/Sold3.jpg"
     },
     {
         id: "sold4",
-        address: "88 Hilltop Way, Wellington",
-        price: "$2,100,000",
-        date: "July 2023",
-        image: "/hero2.jpg",
-        days: "21 Days on Market"
+        title: "The beach is calling - and so is your first home!",
+        location: "Titahi Bay",
+        description: "Deadline Sale pulled forward, now 4pm Monday 7th July 2025 (will not be sold prior). Just moments from the beach, 96 Main Road, Titahi Bay offers spacious ...",
+        details: "2 Beds • 1 Bath • 1 Garage",
+        image: "/Sold4.jpg"
     }
 ];
 
@@ -124,7 +124,7 @@ export default function RecentlySold() {
                             <div className="relative w-full aspect-[4/3] sm:aspect-[4/5] overflow-hidden filter grayscale group-hover:grayscale-0 transition-all duration-700">
                                 <Image
                                     src={prop.image}
-                                    alt={prop.address}
+                                    alt={prop.title}
                                     fill
                                     className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
                                 />
@@ -133,21 +133,23 @@ export default function RecentlySold() {
                                 {/* Sold Badge overlay (Only one tag on top) */}
                                 <div className="absolute top-4 left-4 bg-obsidian/90 backdrop-blur-md px-3 py-1.5 border border-white/10 shadow-lg">
                                     <span className="font-cinzel text-[9px] uppercase tracking-widest text-parchment">
-                                        SOLD • {prop.date}
+                                        RECENTLY SOLD
                                     </span>
                                 </div>
                             </div>
 
                             {/* Text Info */}
                             <div className="p-6 md:p-8 flex flex-col h-full bg-obsidian">
-                                <h3 className="font-cinzel text-lg text-parchment">{prop.address}</h3>
+                                <h3 className="font-cinzel text-lg text-parchment leading-tight line-clamp-2" title={prop.title}>{prop.title}</h3>
+                                <p className="text-sm text-white/40 mt-1 mb-4">{prop.location}</p>
 
-                                <div className="mt-8 border-t border-white/5 pt-5">
-                                    <div className="flex items-end justify-between">
-                                        <div>
-                                            <p className="text-white/40 text-xs italic tracking-wide mb-1 opacity-70">{prop.days}</p>
-                                            <p className="text-gold-muted font-cinzel text-xl tracking-wide uppercase font-light">{prop.price}</p>
-                                        </div>
+                                <p className="text-xs text-white/60 mb-6 leading-relaxed flex-1 italic line-clamp-3">
+                                    "{prop.description}"
+                                </p>
+
+                                <div className="mt-auto border-t border-white/5 pt-5">
+                                    <div className="flex items-center gap-4 text-[10px] font-cinzel tracking-widest text-gold-muted/80 uppercase">
+                                        {prop.details}
                                     </div>
                                 </div>
                             </div>

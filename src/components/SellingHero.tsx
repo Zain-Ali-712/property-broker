@@ -15,7 +15,7 @@ export default function SellingHero() {
             {/* Background Image */}
             <div className="absolute inset-0">
                 <Image
-                    src="/hero1.jpg" // Using hero1 for selling to differentiate from buying
+                    src="/Otaki-main.jpg" // Using real property image
                     alt="Selling Property Hero"
                     fill
                     className="object-cover"

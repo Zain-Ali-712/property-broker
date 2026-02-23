@@ -15,7 +15,7 @@ export default function BuyingHero() {
             {/* Background Image - Lighter and clearer */}
             <div className="absolute inset-0">
                 <Image
-                    src="/hero2.jpg"
+                    src="/ParaparaumuBeach2.jpg"
                     alt="Buying Property Hero"
                     fill
                     className="object-cover"

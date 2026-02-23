@@ -91,7 +91,7 @@ export default function Testimonials() {
                 {/* ── LEFT: Property image with overlaid stats ── */}
                 <div className="relative overflow-hidden hidden lg:block">
                     <Image
-                        src="/hero2.jpg"
+                        src="/Featured2.jpg"
                         alt="Luxury property"
                         fill
                         className="object-cover"

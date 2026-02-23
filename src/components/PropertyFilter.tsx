@@ -178,10 +178,11 @@ export default function PropertyFilter() {
                                 }}
                             >
                                 <Image
-                                    src="/hero2.jpg"
+                                    src={["/Otaki-main.jpg", "/PekaPeka-main.jpg", "/RaumatiBeach-main.jpg"][i]}
                                     alt={`Property ${i + 1}`}
                                     fill
                                     style={{ objectFit: "cover", filter: `brightness(${card.brightness})` }}
+                                    sizes="80px"
                                 />
                             </div>
                         ))}
@@ -245,10 +246,11 @@ export default function PropertyFilter() {
                                 }}
                             >
                                 <Image
-                                    src="/hero2.jpg"
+                                    src={["/Otaki-main.jpg", "/ParaparaumuBeach-main.jpg", "/ParaparaumuBeach2.jpg", "/PekaPeka-main.jpg", "/RaumatiBeach-main.jpg", "/Waikanae-main.jpg"][i]}
                                     alt={`Property ${i + 1}`}
                                     fill
                                     style={{ objectFit: "cover", filter: `brightness(${card.brightness})` }}
+                                    sizes="(max-width: 1024px) 15vw, 10vw"
                                 />
                             </div>
                         ))}
@@ -508,7 +510,7 @@ export default function PropertyFilter() {
                             }}
                         >
                             <Image
-                                src="/hero2.jpg"
+                                src="/kapiti-coast.jpg"
                                 alt="11 Kodex Place, Paraparaumu"
                                 fill
                                 style={{ objectFit: "cover" }}

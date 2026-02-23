@@ -335,7 +335,7 @@ export default function ContactFormSection() {
                             top: "8%",
                             left: "50%",
                             transform: "translateX(-50%)",
-                            width: "85%",         // Wider width
+                            width: "85%",
                             maxWidth: "460px",
                             aspectRatio: "16/10", // Much wider aspect ratio to fit the girl clearly
                             border: "1px solid rgba(201,169,110,0.4)"

@@ -44,7 +44,7 @@ export default function SellingFAQ() {
             {/* Top Image Inset Header */}
             <div className="relative w-full h-[350px] mb-16">
                 <Image
-                    src="/hero1.jpg"
+                    src="/Sold3.jpg"
                     alt="FAQ Background"
                     fill
                     className="object-cover"

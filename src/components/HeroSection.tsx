@@ -289,7 +289,7 @@ export default function HeroSection() {
                     >
                         {/* Overlapping circular previews */}
                         <div className="flex items-center flex-shrink-0">
-                            {["/hero1.jpg", "/hero2.jpg"].map((src, i) => (
+                            {["/ParaparaumuBeach-main.jpg", "/RaumatiBeach-main.jpg"].map((src, i) => (
                                 <div
                                     key={src}
                                     className="rounded-full overflow-hidden relative"

@@ -33,7 +33,7 @@ export default function BuyingInstructions() {
                 {/* LEFT: Image Box with Overlay Text */}
                 <div className="relative w-full aspect-[4/3] sm:aspect-video lg:aspect-auto lg:h-[350px] rounded-sm overflow-hidden flex flex-col justify-start p-8 sm:p-10 border border-white/10 shadow-2xl lg:sticky lg:top-32 group">
                     <Image
-                        src="/hero2.jpg"
+                        src="/RaumatiBeach-main.jpg"
                         alt="Process Guidance"
                         fill
                         className="object-cover transition-transform duration-1000 group-hover:scale-105"

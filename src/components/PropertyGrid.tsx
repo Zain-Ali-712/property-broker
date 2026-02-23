@@ -4,75 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// Dummy property data – replace with real content later
-const properties = [
-    {
-        id: 1,
-        name: "The Warna Cottage",
-        location: "Warna, East Java",
-        rating: 5,
-        beds: 3,
-        baths: 3,
-        garages: 2,
-        price: "$140,000",
-        image: "/hero2.jpg",
-    },
-    {
-        id: 2,
-        name: "DE Santa Mansion",
-        location: "Kahitna, California",
-        rating: 4,
-        beds: 4,
-        baths: 5,
-        garages: 3,
-        price: "$120,000",
-        image: "/hero1.jpg",
-    },
-    {
-        id: 3,
-        name: "ELORA®",
-        location: "Elora, Ontario",
-        rating: 5,
-        beds: 3,
-        baths: 2,
-        garages: 1,
-        price: "$95,000",
-        image: "/hero2.jpg",
-    },
-    {
-        id: 4,
-        name: "Villa Azure",
-        location: "Nice, France",
-        rating: 5,
-        beds: 5,
-        baths: 4,
-        garages: 2,
-        price: "$320,000",
-        image: "/hero2.jpg",
-    },
-    {
-        id: 5,
-        name: "The Glasshouse",
-        location: "Sydney, Australia",
-        rating: 4,
-        beds: 4,
-        baths: 3,
-        garages: 2,
-        price: "$210,000",
-        image: "/hero1.jpg",
-    },
-    {
-        id: 6,
-        name: "Pinecrest Lodge",
-        location: "Aspen, Colorado",
-        rating: 5,
-        beds: 6,
-        baths: 5,
-        garages: 3,
-        price: "$550,000",
-        image: "/Kash.jpg",
-    },
-];
+import { propertiesData, Property } from "@/data/properties";
+import PropertyModal from "./PropertyModal";
 
 const CINZEL = "var(--font-cinzel)";
 const GOLD = "var(--color-gold-muted)";
@@ -81,9 +14,11 @@ const OBSIDIAN = "var(--color-obsidian)";
 
 export default function PropertiesGrid() {
     const [visibleRows, setVisibleRows] = useState(1);
+    const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
+
     const itemsPerRow = 3;
     const visibleCount = visibleRows * itemsPerRow;
-    const hasMore = visibleCount < properties.length;
+    const hasMore = visibleCount < propertiesData.length;
 
     const showMore = () => {
         if (hasMore) setVisibleRows((prev) => prev + 1);
@@ -180,15 +115,17 @@ export default function PropertiesGrid() {
 
                 {/* Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                    {properties.slice(0, visibleCount).map((p) => (
+                    {propertiesData.slice(0, visibleCount).map((p) => (
                         <div
                             key={p.id}
+                            className="flex flex-col cursor-pointer group"
                             style={{
                                 border: "1px solid rgba(255,255,255,0.06)",
                                 overflow: "hidden",
                                 transition: "box-shadow 0.3s, border-color 0.3s",
                                 background: "rgba(255,255,255,0.02)",
                             }}
+                            onClick={() => setSelectedProperty(p)}
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.boxShadow = "0 10px 25px -10px rgba(0,0,0,0.5)";
                                 e.currentTarget.style.borderColor = "rgba(201,169,110,0.3)";
@@ -198,15 +135,22 @@ export default function PropertiesGrid() {
                                 e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)";
                             }}
                         >
-                            <div style={{ position: "relative", aspectRatio: "4/3", width: "100%" }}>
-                                <Image src={p.image} alt={p.name} fill style={{ objectFit: "cover" }} />
+                            <div style={{ position: "relative", aspectRatio: "4/3", width: "100%", overflow: "hidden" }}>
+                                <Image
+                                    src={p.images[0]}
+                                    alt={p.title}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                />
                             </div>
-                            <div style={{ padding: "1.5rem" }}>
+                            <div className="flex flex-col flex-1" style={{ padding: "1.5rem" }}>
                                 {/* Rating stars */}
                                 <div style={{ display: "flex", gap: "0.2rem", marginBottom: "0.5rem", color: GOLD }}>
-                                    {"★".repeat(p.rating)}
+                                    {"★".repeat(5)}
                                 </div>
                                 <h3
+                                    className="line-clamp-1"
                                     style={{
                                         fontFamily: CINZEL,
                                         fontSize: "1.2rem",
@@ -214,11 +158,12 @@ export default function PropertiesGrid() {
                                         fontWeight: 400,
                                         marginBottom: "0.25rem",
                                     }}
+                                    title={p.title}
                                 >
-                                    {p.name}
+                                    {p.title}
                                 </h3>
-                                <p style={{ fontSize: "0.7rem", color: "rgba(245,240,232,0.5)", marginBottom: "0.75rem" }}>
-                                    {p.location}
+                                <p className="line-clamp-1" style={{ fontSize: "0.7rem", color: "rgba(245,240,232,0.5)", marginBottom: "0.75rem" }}>
+                                    {p.address}
                                 </p>
 
                                 {/* Tags with gold dots */}
@@ -234,9 +179,9 @@ export default function PropertiesGrid() {
                                     </span>
                                 </div>
 
-                                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                                <div className="mt-auto pt-4" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                                     <span style={{ fontFamily: CINZEL, fontSize: "1.4rem", color: GOLD, fontWeight: 300 }}>
-                                        {p.price}
+                                        ID: {p.propertyId}
                                     </span>
                                     <button
                                         style={{
@@ -307,6 +252,11 @@ export default function PropertiesGrid() {
                     </div>
                 )}
             </div>
+
+            <PropertyModal
+                property={selectedProperty}
+                onClose={() => setSelectedProperty(null)}
+            />
         </section>
     );
 }

@@ -1,84 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-
-const allProperties = [
-    {
-        id: "prop-b1",
-        title: "Spectacular Ocean Front Estate",
-        address: "18 Marine Parade, Paraparaumu",
-        description: "Experience unparalleled coastal luxury with panoramic sea views, expansive decking, and private beach access.",
-        price: "$2,450,000",
-        beds: 4,
-        baths: 3,
-        sqm: 280,
-        image: "/hero1.jpg",
-        tags: ["Waterfront", "Luxury"],
-    },
-    {
-        id: "prop-b2",
-        title: "Modern Minimalist Retreat",
-        address: "74 Valley View Road, Levin",
-        description: "A masterclass in contemporary design featuring floor-to-ceiling glass, polished concrete, and rural tranquility.",
-        price: "$1,150,000",
-        beds: 3,
-        baths: 2,
-        sqm: 195,
-        image: "/hero2.jpg",
-        tags: ["New Build", "Rural View"],
-    },
-    {
-        id: "prop-b3",
-        title: "Classic Heritage Villa",
-        address: "12 Victoria Street, Foxton",
-        description: "Meticulously restored character home blending historic charm with high-end modern conveniences.",
-        price: "$895,000",
-        beds: 4,
-        baths: 2,
-        sqm: 220,
-        image: "/hero1.jpg",
-        tags: ["Character", "Restored"],
-    },
-    {
-        id: "prop-b4",
-        title: "Contemporary Hillside Home",
-        address: "9 Skyline Drive, Wellington",
-        description: "Architectural brilliance perched above the city, offering dramatic views and seamless indoor-outdoor flow.",
-        price: "$1,750,000",
-        beds: 5,
-        baths: 4,
-        sqm: 310,
-        image: "/hero2.jpg",
-        tags: ["City Views", "Architectural"],
-    },
-    {
-        id: "prop-b5",
-        title: "Boutique Coastal Apartment",
-        address: "Apt 4B, The Pier, Kapiti",
-        description: "Secure, low-maintenance living steps from the sand. Perfect as a high-yield investment or weekend getaway.",
-        price: "$780,000",
-        beds: 2,
-        baths: 1,
-        sqm: 110,
-        image: "/hero1.jpg",
-        tags: ["Investment", "Beachside"],
-    },
-    {
-        id: "prop-b6",
-        title: "Expansive Country Manor",
-        address: "220 Equestrian Way, Horowhenua",
-        description: "A sprawling estate offering premium equestrian facilities, landscaped gardens, and ultimate privacy.",
-        price: "$3,200,000",
-        beds: 6,
-        baths: 5,
-        sqm: 450,
-        image: "/hero2.jpg",
-        tags: ["Equestrian", "Acreage"],
-    }
-];
+import { propertiesData, Property } from "@/data/properties";
+import PropertyModal from "./PropertyModal";
 
 export default function BuyingPropertyGrid() {
+    const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
+
     return (
         <section
             className="w-full relative z-10"
@@ -126,12 +55,16 @@ export default function BuyingPropertyGrid() {
                 {/* ── Redesigned Property Grid ── */}
                 {/* Applied grid layout, ensuring each Link acts as an independent Flex Column child */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {allProperties.map((prop) => (
-                        <Link href={`#`} key={prop.id} className="group flex flex-col w-full overflow-hidden bg-white/[0.015] hover:bg-white/[0.03] border border-white/5 hover:border-gold-muted/40 transition-all duration-500">
+                    {propertiesData.map((prop) => (
+                        <div
+                            key={prop.id}
+                            onClick={() => setSelectedProperty(prop)}
+                            className="group flex flex-col w-full overflow-hidden bg-white/[0.015] hover:bg-white/[0.03] border border-white/5 hover:border-gold-muted/40 transition-all duration-500 cursor-pointer"
+                        >
                             {/* Image Wrapper */}
                             <div className="relative w-full aspect-[4/3] overflow-hidden shrink-0">
                                 <Image
-                                    src={prop.image}
+                                    src={prop.images[0]}
                                     alt={prop.title}
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
@@ -143,17 +76,17 @@ export default function BuyingPropertyGrid() {
                                 {/* ONLY ONE Main Tag on top */}
                                 <div className="absolute top-4 left-4">
                                     <span className="font-cinzel text-[9px] uppercase tracking-widest bg-obsidian/90 backdrop-blur-md text-gold-muted px-3 py-1.5 border border-white/10 shadow-lg">
-                                        {prop.tags[0]}
+                                        FOR SALE
                                     </span>
                                 </div>
                             </div>
 
                             {/* Info Wrapper - flex-1 expands it to match row height */}
                             <div className="p-6 md:p-8 flex flex-col flex-1 bg-obsidian min-h-[250px]">
-                                <h3 className="font-cinzel text-xl text-parchment mb-2 group-hover:text-gold-muted transition-colors leading-tight">{prop.title}</h3>
-                                <p className="text-sm text-white/40 mb-4">{prop.address}</p>
+                                <h3 className="line-clamp-1 font-cinzel text-xl text-parchment mb-2 group-hover:text-gold-muted transition-colors leading-tight" title={prop.title}>{prop.title}</h3>
+                                <p className="line-clamp-1 text-sm text-white/40 mb-4">{prop.address}</p>
 
-                                <p className="text-sm text-white/60 mb-6 leading-relaxed flex-1">
+                                <p className="line-clamp-2 text-sm text-white/60 mb-6 leading-relaxed flex-1">
                                     {prop.description}
                                 </p>
 
@@ -165,16 +98,16 @@ export default function BuyingPropertyGrid() {
                                             <span className="flex items-center gap-1"><span className="text-gold-muted text-xs">{prop.baths}</span> BATHS</span>
                                         </div>
                                         <span className="text-[9px] font-cinzel tracking-widest uppercase text-white/40 bg-white/5 px-2 py-1 rounded-sm">
-                                            {prop.tags[1]}
+                                            {prop.garages} GARAGES
                                         </span>
                                     </div>
 
                                     {/* Price and More Details Button Row */}
                                     <div className="flex items-end justify-between mt-2">
-                                        <p className="font-cinzel text-2xl text-gold-muted tracking-wide font-light">{prop.price}</p>
-                                        <div className="flex items-center gap-2 group-hover:text-gold-muted transition-colors">
+                                        <p className="font-cinzel text-lg md:text-xl xl:text-2xl text-gold-muted tracking-wide font-light line-clamp-1 flex-1 pr-2" title={prop.price}>{prop.price}</p>
+                                        <div className="flex items-center gap-1 shrink-0 group-hover:text-gold-muted transition-colors">
                                             <span className="font-cinzel text-[10px] tracking-widest text-white/40 uppercase group-hover:text-gold-muted transition-colors">
-                                                More Details
+                                                More
                                             </span>
                                             <span className="text-gold-muted transform translate-x-0 group-hover:translate-x-1 transition-all duration-300 text-lg font-light">
                                                 &rarr;
@@ -183,7 +116,7 @@ export default function BuyingPropertyGrid() {
                                     </div>
                                 </div>
                             </div>
-                        </Link>
+                        </div>
                     ))}
                 </div>
 
@@ -204,6 +137,10 @@ export default function BuyingPropertyGrid() {
                     </button>
                 </div>
             </div>
+            <PropertyModal
+                property={selectedProperty}
+                onClose={() => setSelectedProperty(null)}
+            />
         </section>
     );
 }

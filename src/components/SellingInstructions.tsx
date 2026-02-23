@@ -35,7 +35,7 @@ export default function SellingInstructions() {
                 {/* LEFT: Image Box with Overlay Text */}
                 <div className="relative w-full aspect-[4/3] sm:aspect-video lg:aspect-auto lg:h-[450px] rounded-sm overflow-hidden flex flex-col justify-start p-8 sm:p-10 border border-white/10 shadow-2xl lg:sticky lg:top-32 group">
                     <Image
-                        src="/hero1.jpg" // Differentiate from buying page image
+                        src="/Sold1.jpg" // Differentiate from buying page image
                         alt="Selling Process Guidance"
                         fill
                         className="object-cover transition-transform duration-1000 group-hover:scale-105"

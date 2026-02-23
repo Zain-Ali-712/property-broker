@@ -4,18 +4,16 @@ import { useState } from "react";
 import Image from "next/image";
 
 const property = {
-    title: "Modern Coastal Estate",
-    location: "11 Kodex Place, Paraparaumu",
-    price: "$2,450,000",
-    description:
-        "An exquisite architect‑designed residence offering panoramic ocean views, private gardens, and impeccable craftsmanship throughout.",
+    title: "Lifestyle retreat: new build + cottage",
+    location: "76 Parenga Road, Te Horo",
+    price: "$1,580,000",
+    description: "Nestled in Te Horo, this lifestyle retreat offers a stunning new build alongside a charming cottage. An incredible property for those seeking both modern comfort and country serenity.",
     features: [
-        { label: "Beds", value: "5" },
-        { label: "Baths", value: "4" },
-        { label: "Garage", value: "3" },
-        { label: "Land", value: "1.2 ac" },
+        { label: "Beds", value: "3" },
+        { label: "Baths", value: "2" },
+        { label: "Property ID", value: "KPU222301" },
     ],
-    images: ["/hero2.jpg", "/hero2.jpg", "/hero2.jpg"],
+    images: ["/Featured1.jpg", "/Featured2.jpg", "/Featured3.jpg"],
 };
 
 const generalDescription =

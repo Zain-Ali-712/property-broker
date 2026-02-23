@@ -232,7 +232,7 @@ export default function ContactCTA() {
                 {/* ── RIGHT: Decorative property image ── */}
                 <div className="relative hidden lg:block">
                     <Image
-                        src="/hero1.jpg"
+                        src="/PekaPeka-main.jpg"
                         alt="Property"
                         fill
                         className="object-cover"

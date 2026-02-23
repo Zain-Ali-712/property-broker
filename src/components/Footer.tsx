@@ -259,7 +259,7 @@ export default function Footer() {
                         style={{ width: "140px", height: "92px", border: "1px solid rgba(201,169,110,0.18)" }}
                     >
                         <Image
-                            src="/hero2.jpg"
+                            src="/kapiti-coast.jpg"
                             alt="Kapiti Coast office"
                             fill
                             className="object-cover"

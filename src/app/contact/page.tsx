@@ -21,7 +21,7 @@ export default function ContactPage() {
                 {/* Background Image */}
                 <div className="absolute inset-0">
                     <Image
-                        src="/hero2.jpg"
+                        src="/Otaki-main.jpg"
                         alt="Contact Hero"
                         fill
                         className="object-cover"
